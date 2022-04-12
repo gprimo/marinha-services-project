@@ -2,7 +2,7 @@
 Repositório para aquisição e persistência de aeronaves ao redor do mundo de maneira automática utilizando filas
 # instruções
 Para rodar o projeto é necessário rodar cada microserviço e subir o container do docker com o rabbitmq para o gerenciamento das filas
-# Subir o container
+# Subir o container com o rabbitmq
 Basta navegar para pasta raiz do repositório e rodar o docker-compose up
 # Rodar o serviço do frontend em react
 Basta navegar para a pasta do frontend rabbitmq-marinha-react-app, rodar o npm install para instalar as dependências e rodar o app com npm start.
