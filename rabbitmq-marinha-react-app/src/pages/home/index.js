@@ -10,7 +10,8 @@ import { InputText } from 'primereact/inputtext';
 import { Dropdown } from 'primereact/dropdown';
 import { confirmDialog } from 'primereact/confirmdialog';
 import api from '../../services/api';
-import Moment from 'react-moment';
+import moment from 'moment';
+
 
 
 class Home extends Component {
@@ -30,7 +31,7 @@ class Home extends Component {
             this.onPageInputKeyDown = this.onPageInputKeyDown.bind(this);
             this.onPageInputChange = this.onPageInputChange.bind(this);
             this.actionBodyTemplate = this.actionBodyTemplate.bind(this);
-            this.dateNoticiaBodyTemplate = this.dateNoticiaBodyTemplate.bind(this);
+            this.dateContactBodyTemplate = this.dateContactBodyTemplate.bind(this);
 
 
     }
@@ -128,10 +129,10 @@ class Home extends Component {
     }
 
     
-    dateNoticiaBodyTemplate(rowData) {
+    dateContactBodyTemplate(rowData) {
         return (
             <React.Fragment>
-                <div className='elipsisNoticia'><Moment format="DD/MM/YYYY hh:hh">{rowData.dataNoticia}</Moment></div>
+                <div className='elipsisNoticia'>{moment.unix(rowData.last_contact).format("DD/MM/YYYY hh:mm:ss a")}</div>
             </React.Fragment>
         );
     }
@@ -174,7 +175,7 @@ class Home extends Component {
                 <div className="card-data">
                     <DataTable value={this.state.listaAeronaves}  ref={(el) => this.dt = el} dataKey="id"  header={header} className="p-datatable-sm" loading={this.state.loadingSolicitacao} emptyMessage="No aircrafts found." globalFilter={this.state.globalFilter} paginator paginatorTemplate={template2} first={this.state.first2} rows={this.state.rows2} onPage={this.onCustomPage2}>
                         <Column field="origin_country" header="País" headerStyle={{ backgroundColor: '#2196F3', color:"white"}}></Column>
-                        <Column field="last_contact" body={this.dateNoticiaBodyTemplate} header="Último Contato" headerStyle={{ backgroundColor: '#2196F3', color:"white"}}></Column>
+                        <Column field="last_contact" body={this.dateContactBodyTemplate} header="Último Contato" headerStyle={{ backgroundColor: '#2196F3', color:"white"}}></Column>
                         <Column field="latitude" header="Latitude" headerStyle={{ backgroundColor: '#2196F3', color:"white"}}></Column>
                         <Column field="longitude" header="Longitude"  headerStyle={{ backgroundColor: '#2196F3', color:"white"}}></Column>
                         <Column field="velocity" header="Velocidade"  headerStyle={{ backgroundColor: '#2196F3', color:"white"}}></Column>

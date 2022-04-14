@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import ListaAeronavesService from '../../home/services/ListaAeronavesService';
 import RabbitAirplaneService from '../../../services/rabbitAirplaneService';
 import { MapContainer, TileLayer, Marker, Popup} from 'react-leaflet';
-import Moment from 'react-moment';
+import moment from 'moment';
 
 
 class AircraftMap extends Component {
@@ -50,7 +50,7 @@ class AircraftMap extends Component {
                     <Marker position={[this.state.listaAeronaves[i].longitude,this.state.listaAeronaves[i].latitude ]}>
                         <Popup>
                             <span className='mapLabel'>País de Origem: </span><span>{this.state.listaAeronaves[i].origin_country}</span><br/>
-                            <span className='mapLabel'>Último Contato: </span><span>{this.state.listaAeronaves[i].last_contact}</span><br/>
+                            <span className='mapLabel'>Último Contato: </span><span>{moment.unix(this.state.listaAeronaves[i].last_contact).format("DD/MM/YYYY hh:mm:ss a")}</span><br/>
                             <span className='mapLabel'>Latitude: </span><span>{this.state.listaAeronaves[i].latitude}</span><br/>
                             <span className='mapLabel'>Longitude: </span><span>{this.state.listaAeronaves[i].longitude}</span><br/>
                             <span className='mapLabel'>Velocidade: </span><span>{this.state.listaAeronaves[i].velocity}</span><br/>
@@ -61,7 +61,6 @@ class AircraftMap extends Component {
             }
         }
 
-        const limeOptions = { color: 'lime' }
         return ( 
             <Fragment>
                 <MapContainer center={center} zoom={6} scrollWheelZoom={true}>
